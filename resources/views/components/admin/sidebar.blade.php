@@ -7,8 +7,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link py-2" href="{{ route('admin.merk.index') }}">
+                <i class="mdi mdi-database  pr-2 icon-large"></i>
+                <span class="menu-title">Merk</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link py-2" href="{{ route('admin.users.index') }}">
-                <i class="icon-head menu-icon"></i>
+                <i class="mdi mdi-database  pr-2 icon-large"></i>
                 <span class="menu-title">Users</span>
             </a>
         </li>

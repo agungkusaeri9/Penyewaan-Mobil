@@ -4,22 +4,23 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-5">Tambah Permission</h4>
-                    <form action="{{ route('admin.permissions.store') }}" method="post" enctype="multipart/form-data">
+                    <h4 class="card-title mb-5">Edit Merek</h4>
+                    <form action="{{ route('admin.merk.update', $item->id) }}" method="post">
                         @csrf
+                        @method('patch')
                         <div class='form-group mb-3'>
-                            <label for='name' class='mb-2'>Nama</label>
-                            <input type='text' name='name' class='form-control @error('name') is-invalid @enderror'
-                                value='{{ old('name') }}'>
-                            @error('name')
+                            <label for='nama' class='mb-2'>Nama</label>
+                            <input type='text' name='nama' class='form-control @error('nama') is-invalid @enderror'
+                                value='{{ $item->nama ?? old('nama') }}'>
+                            @error('nama')
                                 <div class='invalid-feedback'>
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="form-group text-right">
-                            <a href="{{ route('admin.permissions.index') }}" class="btn btn-warning">Batal</a>
-                            <button class="btn btn-primary">Tambah Permission</button>
+                            <a href="{{ route('admin.merk.index') }}" class="btn btn-warning">Batal</a>
+                            <button class="btn btn-primary">Update Merek</button>
                         </div>
                     </form>
                 </div>

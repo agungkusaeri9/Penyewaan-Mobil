@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MerkController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
@@ -29,8 +30,6 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-    // roles
-    Route::resource('roles', RoleController::class)->except('show');
-    // permissions
-    Route::resource('permissions', PermissionController::class)->except('show');
+    // merk
+    Route::resource('merk', MerkController::class)->except('show');
 });
