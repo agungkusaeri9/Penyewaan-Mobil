@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,9 +26,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return 'Home';
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
+Route::get('/booking/{id}', [BookingController::class, 'show'])->name('booking.show');
 
 // admin
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
