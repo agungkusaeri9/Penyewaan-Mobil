@@ -19,9 +19,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link py-2" href="{{ route('admin.users.index') }}">
+            <a class="nav-link py-2" href="{{ route('admin.customer.index') }}">
                 <i class="mdi mdi-database  pr-2 icon-large"></i>
-                <span class="menu-title">Users</span>
+                <span class="menu-title">Customer</span>
             </a>
         </li>
     </ul>

@@ -30,7 +30,7 @@ Route::get('/', function () {
 // admin
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('users', UserController::class);
+    Route::resource('customer', UserController::class)->only(['index', 'edit', 'update']);
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 

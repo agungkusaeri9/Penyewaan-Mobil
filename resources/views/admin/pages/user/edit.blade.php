@@ -4,8 +4,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-5">Edit User</h4>
-                    <form action="{{ route('admin.users.update', $user->id) }}" method="post" enctype="multipart/form-data">
+                    <h4 class="card-title mb-5">Edit Customer</h4>
+                    <form action="{{ route('admin.customer.update', $user->id) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         <div class='form-group mb-3'>
@@ -29,27 +30,42 @@
                             @enderror
                         </div>
                         <div class='form-group mb-3'>
-                            <label for='email' class='mb-2'>Email</label>
-                            <input type='text' name='email' class='form-control @error('email') is-invalid @enderror'
-                                value='{{ $user->email ?? old('email') }}'>
-                            @error('email')
+                            <label for='nomor_telepon' class='mb-2'>Nomor Telepon</label>
+                            <input type='text' name='nomor_telepon' id='nomor_telepon'
+                                class='form-control @error('nomor_telepon') is-invalid @enderror'
+                                value='{{ $user->nomor_telepon ?? old('nomor_telepon') }}'>
+                            @error('nomor_telepon')
                                 <div class='invalid-feedback'>
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class='form-group mb-3'>
-                            <label for='roles' class='mb-2'>Roles</label>
-                            <select name="roles[]" multiple id="roles"
-                                class="form-control @error('roles') is-invalid @enderror">
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->name }}"
-                                        {{ in_array($role->name,old('roles',$user->roles()->pluck('name')->toArray()))? 'selected': '' }}>
-                                        {{ $role->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('roles')
+                            <label for='nomor_sim' class='mb-2'>Nomor SIM</label>
+                            <input type='text' name='nomor_sim' id='nomor_sim'
+                                class='form-control @error('nomor_sim') is-invalid @enderror'
+                                value='{{ $user->nomor_sim ?? old('nomor_sim') }}'>
+                            @error('nomor_sim')
+                                <div class='invalid-feedback'>
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class='form-group mb-3'>
+                            <label for='alamat' class='mb-2'>Alamat</label>
+                            <textarea name='alamat' id='alamat' cols='30' rows='3'
+                                class='form-control @error('alamat') is-invalid @enderror'>{{ $user->alamat ?? old('alamat') }}</textarea>
+                            @error('alamat')
+                                <div class='invalid-feedback'>
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class='form-group mb-3'>
+                            <label for='email' class='mb-2'>Email</label>
+                            <input type='text' name='email' class='form-control @error('email') is-invalid @enderror'
+                                value='{{ $user->email ?? old('email') }}' disabled>
+                            @error('email')
                                 <div class='invalid-feedback'>
                                     {{ $message }}
                                 </div>
@@ -77,8 +93,8 @@
                             @enderror
                         </div>
                         <div class="form-group text-right">
-                            <a href="{{ route('admin.users.index') }}" class="btn btn-warning">Batal</a>
-                            <button class="btn btn-primary">Update User</button>
+                            <a href="{{ route('admin.customer.index') }}" class="btn btn-warning">Batal</a>
+                            <button class="btn btn-primary">Update Customer</button>
                         </div>
                     </form>
                 </div>

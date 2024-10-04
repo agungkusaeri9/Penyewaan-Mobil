@@ -10,62 +10,18 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('can:User Index')->only('index');
-        $this->middleware('can:User Create')->only(['create', 'store']);
-        $this->middleware('can:User Edit')->only(['edit', 'update']);
-        $this->middleware('can:User Delete')->only('destroy');
-    }
-
     public function index()
     {
-        $users = User::orderBy('name', 'ASC')->get();
+        $users = User::role('customer')->orderBy('name', 'ASC')->get();
         return view('admin.pages.user.index', [
-            'title' => 'User',
+            'title' => 'Customer',
             'users' => $users
         ]);
     }
 
-    public function create()
-    {
-        $roles = Role::orderBy('name', 'ASC')->get();
-        return view('admin.pages.user.create', [
-            'title' => 'Tambah User',
-            'roles' => $roles
-        ]);
-    }
-
-    public function store()
-    {
-        request()->validate([
-            'name' => ['required', 'min:3'],
-            'email' => ['required', 'unique:users,email'],
-            'password' => ['min:5', 'confirmed'],
-            'roles' => ['required', 'array'],
-            'avatar' => ['image', 'mimes:jpg,jpeg,png,svg', 'max:2048']
-        ]);
-
-        DB::beginTransaction();
-        try {
-            $roles = request('roles');
-            $data = request()->only(['name', 'email']);
-            $data['password'] = bcrypt(request('password'));
-            request()->file('avatar') ? $data['avatar'] = request()->file('avatar')->store('users', 'public') : NULL;
-            $user = User::create($data);
-            $user->assignRole($roles);
-            DB::commit();
-            return redirect()->route('admin.users.index')->with('success', 'User berhasil ditambahkan.');
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            // throw $th;
-            return redirect()->back()->with('error', $th->getMessage());
-        }
-    }
-
     public function edit($id)
     {
-        $user = User::where('id', '!=', auth()->id())->where('id', $id)->firstOrFail();
+        $user = User::role('customer')->where('id', '!=', auth()->id())->where('id', $id)->firstOrFail();
         $roles = Role::orderBy('name', 'ASC')->get();
         return view('admin.pages.user.edit', [
             'title' => 'Edit User',
@@ -79,8 +35,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         request()->validate([
             'name' => ['required', 'min:3'],
-            'email' => ['required', 'unique:users,email,' . $id . ''],
-            'roles' => ['required', 'array'],
+            'nomor_telepon' => ['required'],
+            'nomor_sim' => ['required', 'numeric'],
+            'alamat' => ['required'],
             'avatar' => ['image', 'mimes:jpg,jpeg,png,svg', 'max:2048']
         ]);
 
@@ -93,14 +50,12 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $roles = request('roles');
-            $data = request()->only(['name', 'email']);
+            $data = request()->only(['name', 'nomor_telepon', 'nomor_sim', 'alamat', 'email']);
             request('password') ? $data['password'] = bcrypt(request('password')) : NULL;
             request()->file('avatar') ? $data['avatar'] = request()->file('avatar')->store('users', 'public') : NULL;
             $user->update($data);
-
-            $user->syncRoles($roles);
             DB::commit();
-            return redirect()->route('admin.users.index')->with('success', 'User berhasil diupdate.');
+            return redirect()->route('admin.customer.index')->with('success', 'Customer berhasil diupdate.');
         } catch (\Throwable $th) {
             DB::rollBack();
             // throw $th;
@@ -116,7 +71,7 @@ class UserController extends Controller
         try {
             $user->delete();
             DB::commit();
-            return redirect()->route('admin.users.index')->with('success', 'User berhasil dihapus.');
+            return redirect()->route('admin.customer.index')->with('success', 'Customer berhasil dihapus.');
         } catch (\Throwable $th) {
             DB::rollBack();
             // throw $th;

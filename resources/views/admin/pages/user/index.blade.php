@@ -5,9 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mb-3">Users</h4>
-                        <a href="{{ route('admin.users.create') }}" class="btn my-2 mb-3 btn-sm py-2 btn-primary">Tambah
-                            User</a>
+                        <h4 class="card-title mb-3">Customer</h4>
                     </div>
                     <div class="table-responsive">
                         <table class="table dtTable table-hover">
@@ -15,12 +13,12 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Avatar</th>
-                                    <th>Name</th>
+                                    <th>Nama</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Nomor SIM</th>
+                                    <th>Alamat</th>
                                     <th>Email</th>
-                                    <th>Role</th>
-                                    @canany(['User Edit', 'User Delete'])
-                                        <th>Aksi</th>
-                                    @endcanany
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,37 +29,14 @@
                                             <img src="{{ $user->avatar() }}" class="img-fluid" alt="">
                                         </td>
                                         <td>{{ $user->name }}</td>
+                                        <td>{{ $user->nomor_telepon }}</td>
+                                        <td>{{ $user->nomor_sim }}</td>
+                                        <td>{{ $user->alamat }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            @forelse ($user->roles as $role)
-                                                <span class="badge badge-warning">{{ $role->name }}</span>
-                                            @empty
-                                                <i>Tidak Punya Role!</i>
-                                            @endforelse
+                                            <a href="{{ route('admin.customer.edit', $user->id) }}"
+                                                class="btn btn-sm py-2 btn-info">Edit</a>
                                         </td>
-                                        @canany(['User Edit', 'User Delete'])
-                                            <td>
-                                                @if ($user->id != auth()->id())
-                                                    @can('User Edit')
-                                                        <a href="{{ route('admin.users.edit', $user->id) }}"
-                                                            class="btn btn-sm py-2 btn-info">Edit</a>
-                                                    @endcan
-                                                    @can('User Delete')
-                                                        <form action="javascript:void(0)" method="post" class="d-inline"
-                                                            id="formDelete">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button class="btn btnDelete btn-sm py-2 btn-danger"
-                                                                data-action="{{ route('admin.users.destroy', $user->id) }}">Hapus</button>
-                                                        </form>
-                                                    @endcan
-                                                @else
-                                                    <div class="text-danger font-italic">
-                                                        Tidak Ada Akses
-                                                    </div>
-                                                @endif
-                                            </td>
-                                        @endcanany
                                     </tr>
                                 @endforeach
                             </tbody>
