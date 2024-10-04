@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MerkController;
+use App\Http\Controllers\Admin\MobilController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
@@ -32,4 +33,6 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
 
     // merk
     Route::resource('merk', MerkController::class)->except('show');
+    // mobil
+    Route::resource('mobil', MobilController::class)->except('show');
 });
