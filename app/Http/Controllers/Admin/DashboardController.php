@@ -10,11 +10,6 @@ use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('can:Dashboard')->only('index');
-    }
-
     public function index()
     {
         $count = [

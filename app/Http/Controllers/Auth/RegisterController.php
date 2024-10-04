@@ -54,6 +54,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nomor_sim' => ['required', 'numeric'],
+            'nomor_telepon' => ['required'],
+            'alamat' => ['required']
         ]);
     }
 
@@ -67,11 +70,19 @@ class RegisterController extends Controller
     {
         $user =  User::create([
             'name' => $data['name'],
+            'nomor_telepon' => $data['nomor_telepon'],
+            'nomor_sim' => $data['nomor_sim'],
+            'alamat' => $data['alamat'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        $role = Role::findByName('admin')->name ?? 'superadmin';
+        $role = Role::findByName('customer')->name ?? 'customer';
         $user->assignRole($role);
         return $user;
+    }
+
+    protected function registered()
+    {
+        return redirect('/');
     }
 }
