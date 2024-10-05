@@ -13,6 +13,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link py-2" href="{{ route('admin.pengembalian.index') }}">
+                <i class="mdi  mdi-key-remove   pr-2 icon-large"></i>
+                <span class="menu-title">Pengembalian</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link py-2" href="{{ route('admin.mobil.index') }}">
                 <i class="mdi mdi-car  pr-2 icon-large"></i>
                 <span class="menu-title">Mobil</span>

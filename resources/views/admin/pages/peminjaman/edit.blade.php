@@ -173,7 +173,6 @@
                                 <option @selected($item->status == 1) value="1">Proses Verifikasi Pembayaran</option>
                                 <option @selected($item->status == 2) value="2">Pembayaran Diverifikasi</option>
                                 <option @selected($item->status == 3) value="3">Sedang Dipinjam</option>
-                                <option @selected($item->status == 4) value="4">Selesai</option>
                                 <option @selected($item->status == 5) value="5">Batal</option>
                             </select>
                             @error('status')

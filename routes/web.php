@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MerkController;
 use App\Http\Controllers\Admin\MetodePembayaranController;
 use App\Http\Controllers\Admin\MobilController;
+use App\Http\Controllers\Admin\PeminjamanController as AdminPeminjamanController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
@@ -57,5 +58,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     // mobil
     Route::resource('mobil', MobilController::class)->except('show');
     Route::resource('metode-pembayaran', MetodePembayaranController::class)->except('show');
+    Route::get('peminjaman/getJson', [AdminPeminjamanController::class, 'getJson'])->name('peminjaman.getJson');
     Route::resource('peminjaman', \App\Http\Controllers\Admin\PeminjamanController::class)->only(['index', 'edit', 'update', 'show']);
+    Route::resource('pengembalian', \App\Http\Controllers\Admin\PengembalianController::class);
 });

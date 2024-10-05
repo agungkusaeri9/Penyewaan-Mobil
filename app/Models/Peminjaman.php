@@ -17,6 +17,11 @@ class Peminjaman extends Model
         'tanggal_akhir' => 'datetime',
     ];
 
+    public function pengembalian()
+    {
+        return $this->hasOne(Pengembalian::class);
+    }
+
     public function mobil()
     {
         return $this->belongsTo(Mobil::class);
@@ -81,17 +86,17 @@ class Peminjaman extends Model
         // 4 Selesai
         // 5 Batal
         if ($this->status == 0) {
-            return '<span class="p-2 bg-warning">Menunggu Pembayaran</span>';
+            return '<span class="p-2 badge badge-warning">Menunggu Pembayaran</span>';
         } elseif ($this->status == 1) {
-            return '<span class="p-2 bg-warning">Proses Verifikasi Pembayaran</span>';
+            return '<span class="p-2 badge badge-warning">Proses Verifikasi Pembayaran</span>';
         } elseif ($this->status == 2) {
-            return '<span class="p-2 bg-info">Pembayaran Diverifikasi</span>';
+            return '<span class="p-2 badge badge-info">Pembayaran Diverifikasi</span>';
         } elseif ($this->status == 3) {
-            return '<span class="p-2 bg-primary">Sedang Dipinjam</span>';
+            return '<span class="p-2 badge badge-primary">Sedang Dipinjam</span>';
         } elseif ($this->status == 4) {
-            return '<span class="p-2 bg-success">Selesai</span>';
+            return '<span class="p-2 badge badge-success">Selesai</span>';
         } else {
-            return '<span class="p-2 bg-danger">Batal</span>';
+            return '<span class="p-2 badge badge-danger">Batal</span>';
         }
     }
 }
