@@ -6,7 +6,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto p-4 p-lg-0">
+        <div class="navbar-nav mx-auto p-4 p-lg-0">
             <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
             <a href="{{ route('booking.index') }}" class="nav-item nav-link">Booking</a>
             <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
@@ -15,15 +15,20 @@
                 <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
                 <a href="{{ route('register') }}" class="nav-item nav-link">Register</a>
             @else
-                <a href="{{ route('peminjaman.index') }}" class="nav-item nav-link">Riwayat Peminjaman</a>
-                {{-- <div class="nav-item dropdown">
+                <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle"
                         data-bs-toggle="dropdown">{{ auth()->user()->name }}</a>
                     <div class="dropdown-menu fade-up m-0">
-                        <a href="booking.html" class="dropdown-item">Riwayat Peminjaman</a>
-                        <a href="#" class="dropdown-item">Keluar</a>
+                        <a href="{{ route('peminjaman.index') }}" class="dropdown-item">Riwayat Peminjaman</a>
+                        <a href="{{ route('pengembalian.index') }}" class="dropdown-item">Riwayat Pengembalian</a>
+                        <a href="#" class="dropdown-item"
+                            onclick="document.getElementById('formLogout').submit()">Keluar</a>
+                        <form action="{{ route('logout') }}" method="post" id="formLogout">
+                            @csrf
+
+                        </form>
                     </div>
-                </div> --}}
+                </div>
             @endguest
         </div>
         {{-- <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Booking Sekarang</a> --}}

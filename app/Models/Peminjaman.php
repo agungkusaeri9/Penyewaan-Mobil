@@ -99,4 +99,21 @@ class Peminjaman extends Model
             return '<span class="p-2 badge badge-danger">Batal</span>';
         }
     }
+
+    public function status2()
+    {
+        if ($this->status == 0) {
+            return '<span class="p-2 text-white bg-warning">Menunggu Pembayaran</span>';
+        } elseif ($this->status == 1) {
+            return '<span class="p-2 text-white bg-warning">Proses Verifikasi Pembayaran</span>';
+        } elseif ($this->status == 2) {
+            return '<span class="p-2 text-white bg-info">Pembayaran Diverifikasi</span>';
+        } elseif ($this->status == 3) {
+            return '<span class="p-2 text-white bg-primary">Sedang Dipinjam</span>';
+        } elseif ($this->status == 4) {
+            return '<span class="p-2 text-white bg-success">Selesai</span>';
+        } else {
+            return '<span class="p-2 text-white bg-danger">Batal</span>';
+        }
+    }
 }

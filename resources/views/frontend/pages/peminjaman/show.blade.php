@@ -132,7 +132,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <td>:</td>
-                                        <td>{!! $item->status() !!}</td>
+                                        <td>{!! $item->status2() !!}</td>
                                     </tr>
                                 </tbody>
 

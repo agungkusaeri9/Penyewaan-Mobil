@@ -59,4 +59,26 @@ class Pengembalian extends Model
             return '<span class="p-2 badge badge-info">Menunggu Pembayaran Denda</span>';
         }
     }
+
+    public function status2()
+    {
+        if ($this->status == 0) {
+            return '<span class="p-2 text-white bg-warning">Pending</span>';
+        } elseif ($this->status == 1) {
+            return '<span class="p-2 text-white bg-warning">Diperiksa</span>';
+        } elseif ($this->status == 2) {
+            return '<span class="p-2 text-white bg-success">Selesai</span>';
+        } elseif ($this->status == 3) {
+            return '<span class="p-2 text-white bg-danger">Ditolak</span>';
+        } else {
+            return '<span class="p-2 text-white bg-info">Menunggu Pembayaran Denda</span>';
+        }
+    }
+
+    public function scopeGetByUser($val)
+    {
+        $val->whereHas('peminjaman', function ($q) {
+            $q->where('user_id', auth()->id());
+        });
+    }
 }

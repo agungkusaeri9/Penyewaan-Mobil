@@ -14,6 +14,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PengembalianController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::post('peminjaman', [PeminjamanController::class, 'pinjam'])->name('peminjaman.pinjam');
     Route::get('peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
     Route::get('peminjaman/{uuid}', [PeminjamanController::class, 'show'])->name('peminjaman.show');
+    Route::get('pengembalian', [PengembalianController::class, 'index'])->name('pengembalian.index');
+    Route::get('pengembalian/{uuid}', [PengembalianController::class, 'show'])->name('pengembalian.show');
 });
 // admin
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {

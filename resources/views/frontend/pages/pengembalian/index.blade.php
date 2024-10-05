@@ -5,11 +5,11 @@
         style="background-image: url('{{ asset('assets/frontend/img/carousel-bg-1.jpg') }}');">
         <div class="container-fluid page-header-inner py-5">
             <div class="container text-center">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">Riwayat Peminjaman</h1>
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Riwayat Pengembalian</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center text-uppercase">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Riwayat Peminjaman</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Riwayat Pengembalian</li>
                     </ol>
                 </nav>
             </div>
@@ -28,14 +28,12 @@
                             <table class="table table-striped">
                                 <tbody>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Tanggal Pinjam</th>
+                                        <th>No.</th>
+                                        <th>Tanggal Pengembalian</th>
                                         <th>Kode</th>
                                         <th>Mobil</th>
                                         <th>Tanggal Mulai</th>
                                         <th>Tanggal Akhir</th>
-                                        <th>Total Bayar</th>
-                                        <th>Bukti</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -44,25 +42,16 @@
                                     @foreach ($items as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->created_at->translatedFormat('d-m-Y H:i') }}</td>
+                                            <td>{{ $item->tanggal_pengembalian->translatedFormat('d-m-Y H:i') }}</td>
                                             <td>{{ $item->kode }}</td>
-                                            <td>{{ $item->mobil->merek->nama . ' ' . $item->mobil->model }}</td>
-                                            <td>{{ $item->tanggal_mulai->translatedFormat('d-m-Y H:i') }}</td>
-                                            <td>{{ $item->tanggal_akhir->translatedFormat('d-m-Y H:i') }}</td>
-                                            <td>{{ formatRupiah($item->total_bayar) }}</td>
-                                            <td>
-                                                @if ($item->bukti_pembayaran)
-                                                    <a href="{{ $item->bukti_pembayaran() }}" target="_blank">Lihat</a>
-                                                @else
-                                                    <i>Tidak Tersedia</i>
-                                                @endif
+                                            <td>{{ $item->peminjaman->mobil->merek->nama . ' ' . $item->peminjaman->mobil->model }}
                                             </td>
+                                            <td>{{ $item->peminjaman->tanggal_mulai->translatedFormat('d-m-Y H:i') }}</td>
+                                            <td>{{ $item->peminjaman->tanggal_akhir->translatedFormat('d-m-Y H:i') }}</td>
+                                            <td>{!! $item->status2() !!}</td>
                                             <td>
-                                                {!! $item->status2() !!}
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('peminjaman.show', $item->uuid) }}"
-                                                    class="btn btn-secondary btn-sm">Detail</a>
+                                                <a href="{{ route('pengembalian.show', $item->uuid) }}"
+                                                    class="btn btn-sm py-2 btn-warning">Detail</a>
                                             </td>
                                         </tr>
                                     @endforeach
