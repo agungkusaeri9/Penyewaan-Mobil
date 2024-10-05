@@ -71,11 +71,27 @@ class Peminjaman extends Model
         return asset('storage/' . $this->bukti_pembayaran);
     }
 
-    // status peminjaman
-    // 0 Menunggu Pembayaran
-    // 1 Proses Verifikasi Pembayaran
-    // 2 Pembayaran Diverifikasi
-    // 3 Sedang Dipinjam
-    // 4 Selesai
-    // 5 Batal
+    public function status()
+    {
+        // status peminjaman
+        // 0 Menunggu Pembayaran
+        // 1 Proses Verifikasi Pembayaran
+        // 2 Pembayaran Diverifikasi
+        // 3 Sedang Dipinjam
+        // 4 Selesai
+        // 5 Batal
+        if ($this->status == 0) {
+            return '<span class="p-2 bg-warning">Menunggu Pembayaran</span>';
+        } elseif ($this->status == 1) {
+            return '<span class="p-2 bg-warning">Proses Verifikasi Pembayaran</span>';
+        } elseif ($this->status == 2) {
+            return '<span class="p-2 bg-info">Pembayaran Diverifikasi</span>';
+        } elseif ($this->status == 3) {
+            return '<span class="p-2 bg-primary">Sedang Dipinjam</span>';
+        } elseif ($this->status == 4) {
+            return '<span class="p-2 bg-success">Selesai</span>';
+        } else {
+            return '<span class="p-2 bg-danger">Batal</span>';
+        }
+    }
 }

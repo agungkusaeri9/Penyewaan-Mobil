@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
+
+    public function index()
+    {
+        $items = Peminjaman::with(['user', 'mobil', 'metode_pembayaran'])->getByUser()->latest()->get();
+        return view('frontend.pages.peminjaman.index', [
+            'title' => 'Riwayat Peminjaman',
+            'items' => $items
+        ]);
+    }
     public function pinjam()
     {
         request()->validate([
@@ -62,7 +71,8 @@ class PeminjamanController extends Controller
         try {
             $peminjaman = Peminjaman::with('metode_pembayaran')->getByUser()->where('uuid', $uuid)->firstOrFail();
             $peminjaman->update([
-                'bukti_pembayaran' => request()->file('bukti_pembayaran')->store('bukti-pembayaran', 'public')
+                'bukti_pembayaran' => request()->file('bukti_pembayaran')->store('bukti-pembayaran', 'public'),
+                'status' => 1
             ]);
 
             return redirect()->back()->with('success', 'Bukti pembayaran berhasil diupload.');
@@ -70,5 +80,14 @@ class PeminjamanController extends Controller
             throw $th;
             return redirect()->back()->with('error', $th->getMessage());
         }
+    }
+
+    public function show($uuid)
+    {
+        $item = Peminjaman::with(['user', 'mobil', 'metode_pembayaran'])->getByUser()->where('uuid', $uuid)->firstOrFail();
+        return view('frontend.pages.peminjaman.show', [
+            'title' => 'Detail Peminjaman',
+            'item' => $item
+        ]);
     }
 }

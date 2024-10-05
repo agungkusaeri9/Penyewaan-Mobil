@@ -15,6 +15,7 @@
                 <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
                 <a href="{{ route('register') }}" class="nav-item nav-link">Register</a>
             @else
+                <a href="{{ route('peminjaman.index') }}" class="nav-item nav-link">Riwayat Peminjaman</a>
                 {{-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle"
                         data-bs-toggle="dropdown">{{ auth()->user()->name }}</a>

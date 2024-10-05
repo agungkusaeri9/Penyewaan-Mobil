@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::get('peminjaman/{uuid}/success', [PeminjamanController::class, 'success'])->name('peminjaman.success');
     Route::post('peminjaman/{uuid}/upload-bukti', [PeminjamanController::class, 'upload_bukti'])->name('peminjaman.upload-bukti');
     Route::post('peminjaman', [PeminjamanController::class, 'pinjam'])->name('peminjaman.pinjam');
+    Route::get('peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+    Route::get('peminjaman/{uuid}', [PeminjamanController::class, 'show'])->name('peminjaman.show');
 });
 // admin
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
