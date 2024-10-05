@@ -57,4 +57,5 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     // mobil
     Route::resource('mobil', MobilController::class)->except('show');
     Route::resource('metode-pembayaran', MetodePembayaranController::class)->except('show');
+    Route::resource('peminjaman', \App\Http\Controllers\Admin\PeminjamanController::class)->only(['index', 'edit', 'update', 'show']);
 });

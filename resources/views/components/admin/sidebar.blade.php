@@ -7,6 +7,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link py-2" href="{{ route('admin.peminjaman.index') }}">
+                <i class="mdi mdi-car-key  pr-2 icon-large"></i>
+                <span class="menu-title">Peminjaman</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link py-2" href="{{ route('admin.mobil.index') }}">
                 <i class="mdi mdi-car  pr-2 icon-large"></i>
                 <span class="menu-title">Mobil</span>
