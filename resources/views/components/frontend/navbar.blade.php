@@ -7,13 +7,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav mx-auto p-4 p-lg-0">
-            <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
-            <a href="{{ route('booking.index') }}" class="nav-item nav-link">Booking</a>
-            <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
-            <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
+            <a href="{{ route('home') }}"
+                class="nav-item nav-link @if (Route::is('home')) active @endif">Home</a>
+            <a href="{{ route('booking.index') }}"
+                class="nav-item nav-link @if (Route::is('booking.index')) active @elseif (Route::is('booking.show')) active @endif">Booking</a>
+            <a href="{{ route('about') }}"
+                class="nav-item nav-link @if (Route::is('tentang')) active @endif">About</a>
+            <a href="{{ route('contact') }}"
+                class="nav-item nav-link @if (Route::is('kontak')) active @endif">Contact</a>
             @guest
-                <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
-                <a href="{{ route('register') }}" class="nav-item nav-link">Register</a>
+                <a href="{{ route('login') }}"
+                    class="nav-item nav-link @if (Route::is('home')) active @endif">Login</a>
+                <a href="{{ route('register') }}"
+                    class="nav-item nav-link @if (Route::is('home')) active @endif">Register</a>
             @else
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle"

@@ -1,11 +1,26 @@
 ## Daftar Fitur Saat Ini
 
+### Admin
+
+-   Login
+-   Dashboard
+-   Edit Profile
+-   Manajemen Peminjaman
+-   Manajemen Pengembalian
+-   Manajemen Mobil
+-   Manajemen Merek
+-   Manajemen Metode Pembayaran
+-   Manajemen Customer
+-   Logout
+
+### Customer
+
 -   Register
 -   Login
--   Edit Profile
--   Manajemen Role
--   Manajemen Permission
--   Manajemen User
+-   Sewa Mobil
+-   Riwayat Peminjaman
+-   Riwayat Pengembalian
+-   Logout
 
 ## Persyaratan Sistem
 
