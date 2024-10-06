@@ -81,7 +81,21 @@ Kemudian anda perlu membuat tabel-tabel yang diperlukan sekaligus dibuatkan user
 php artisan migrate --seed
 ```
 
-## Langkah 5: Menjalankan server
+## Langkah 5: Menjalankan Symlink
+
+Kemudian jalankan peritah berikut agar gambar-gambar yang sudah di upload dapat terlihat:
+
+```bash
+php artisan storage:link
+```
+
+Kemudian anda perlu membuat tabel-tabel yang diperlukan sekaligus dibuatkan user untuk login, dengan menjalankan migrasi dan seeder database:
+
+```bash
+php artisan migrate --seed
+```
+
+## Langkah 6: Menjalankan server
 
 Untuk menjalankan server, tuliskan perintah berikut:
 
@@ -89,7 +103,7 @@ Untuk menjalankan server, tuliskan perintah berikut:
 php artisan serve
 ```
 
-## Langkah 6: Instalasi NPM Dependencies
+## Langkah 7: Instalasi NPM Dependencies
 
 Untuk menginstal semua dependensi Node.js yang diperlukan, jalankan perintah berikut:
 
@@ -97,7 +111,7 @@ Untuk menginstal semua dependensi Node.js yang diperlukan, jalankan perintah ber
 npm install
 ```
 
-## Langkah 7: Kompilasi Asset
+## Langkah 8: Kompilasi Asset
 
 Untuk mengkompilasi asset, jalankan perintah berikut:
 
@@ -107,7 +121,7 @@ npm run dev
 
 biarkan berjalan bersaamaan dengan server.
 
-## Langkah 8 : Login ke Sistem
+## Langkah 9 : Login ke Sistem
 
 Setelah semuanya berjalan dengan lancar, silahkan buka google chrome dan akses
 
@@ -117,5 +131,5 @@ http://127.0.0.1:8000
 
 Selanjutnya anda bisa melakukan login dengan :
 
--   Email : superadmin@gmail.com
+-   Email : admin@gmail.com
 -   Password : password
