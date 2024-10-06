@@ -44,8 +44,18 @@ class Peminjaman extends Model
 
     public static function cekKetersediaan($tanggal, $durasi, $mobil_id)
     {
-        $tanggal_sampai = Carbon::parse(request('tanggal'))->addDay($durasi);
-        $cek = Peminjaman::whereBetween('tanggal_mulai', [$tanggal, $tanggal_sampai])->where('mobil_id', $mobil_id)->whereIn('status', [0, 1, 2, 3])->count();
+        $tanggal_mulai = Carbon::parse($tanggal)->format('Y-m-d H:i:s');
+        $tanggal_akhir = Carbon::parse(request('tanggal'))->addDay($durasi);
+        $cek = Peminjaman::where('mobil_id', $mobil_id)
+            ->whereIn('status', [0, 1, 2, 3])
+            ->where(function ($query) use ($tanggal_mulai, $tanggal_akhir) {
+                $query->whereBetween('tanggal_mulai', [$tanggal_mulai, $tanggal_akhir])
+                    ->orWhereBetween('tanggal_akhir', [$tanggal_mulai, $tanggal_akhir])
+                    ->orWhere(function ($query) use ($tanggal_mulai, $tanggal_akhir) {
+                        $query->where('tanggal_mulai', '<=', $tanggal_mulai)
+                            ->where('tanggal_akhir', '>=', $tanggal_akhir);
+                    });
+            })->count();
         if ($cek > 0) {
             return false;
         } else {

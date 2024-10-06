@@ -54,6 +54,7 @@ class BookingController extends Controller
             $durasi = request('durasi');
             $mobil = Mobil::find($mobil_id);
             $cek = Peminjaman::cekKetersediaan($tanggal, $durasi, $mobil_id);
+
             $total_bayar = $durasi * $mobil->tarif_perhari;
             if ($cek == false) {
                 return response()->json([

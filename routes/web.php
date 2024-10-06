@@ -40,7 +40,7 @@ Route::get('/booking', [BookingController::class, 'index'])->name('booking.index
 Route::get('/booking/{id}', [BookingController::class, 'show'])->name('booking.show');
 Route::post('/cek-ketersediaan', [BookingController::class, 'cek_ketersediaan'])->name('cek-ketersediaan');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('peminjaman/{uuid}/success', [PeminjamanController::class, 'success'])->name('peminjaman.success');
     Route::post('peminjaman/{uuid}/upload-bukti', [PeminjamanController::class, 'upload_bukti'])->name('peminjaman.upload-bukti');
     Route::post('peminjaman', [PeminjamanController::class, 'pinjam'])->name('peminjaman.pinjam');
@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('pengembalian/{uuid}', [PengembalianController::class, 'show'])->name('pengembalian.show');
 });
 // admin
-Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('customer', UserController::class)->only(['index', 'edit', 'update']);
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
