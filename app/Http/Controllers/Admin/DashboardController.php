@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mobil;
+use App\Models\Peminjaman;
+use App\Models\Pengembalian;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
@@ -13,9 +16,10 @@ class DashboardController extends Controller
     public function index()
     {
         $count = [
-            'user' => User::count(),
-            'role' => Role::count(),
-            'permission' => Permission::count()
+            'customer' => User::role('customer')->count(),
+            'peminjaman' => Peminjaman::count(),
+            'mobil' => Mobil::count(),
+            'pengembalian' => Pengembalian::count()
         ];
         return view('admin.pages.dashboard', [
             'title' => 'Dashboard',
