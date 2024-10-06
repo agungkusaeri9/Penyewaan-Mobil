@@ -46,7 +46,10 @@
 
                             </div>
                             <div class="text-center mt-4 font-weight-light">
-                                Don't have an account? <a href="{{ route('register') }}" class="text-primary">Create</a>
+                                Belum punya akun? <a href="{{ route('register') }}" class="text-primary">Register</a>
+                            </div>
+                            <div class="text-center font-weight-light mt-2">
+                                <a href="{{ route('home') }}" class="text-center text-dark">Kembali</a>
                             </div>
                         </form>
                     </div>

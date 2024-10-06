@@ -88,7 +88,10 @@
                                     UP</button>
                             </div>
                             <div class="text-center mt-4 font-weight-light">
-                                Already have an account? <a href="{{ route('login') }}" class="text-primary">Login</a>
+                                Sudah Punya Akun? <a href="{{ route('login') }}" class="text-primary">Login</a>
+                            </div>
+                            <div class="text-center font-weight-light mt-2">
+                                <a href="{{ route('home') }}" class="text-center text-dark">Kembali</a>
                             </div>
                         </form>
                     </div>

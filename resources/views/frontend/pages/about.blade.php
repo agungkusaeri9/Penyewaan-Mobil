@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-lg-6">
                     <h6 class="text-primary text-uppercase">// Tentang Kami //</h6>
-                    <h1 class="mb-4"><span class="text-primary">CarServ</span> Tempat Terbaik untuk Sewa Mobil Anda</h1>
+                    <h1 class="mb-4"><span class="text-primary">CarMe</span> Tempat Terbaik untuk Sewa Mobil Anda</h1>
                     <p class="mb-4">Kami telah berpengalaman selama lebih dari 15 tahun dalam menyediakan layanan sewa
                         mobil
                         yang nyaman, aman, dan terpercaya. Dengan berbagai pilihan mobil yang selalu terawat, kami siap
